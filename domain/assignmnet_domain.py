@@ -31,7 +31,7 @@ class assignmnetDomain:
                             for time1 in range(7, (20 - first_time_schedule)):
                                 for time2 in range(7, (20 - second_time_schedule)):
                                     
-                                    assignment_tuple = (program_id, course_code, instructor, room1, room2, day1, day2, time1, time2)
+                                    assignment_tuple = (program_id, course_code, course_type, instructor, room1, room2, day1, day2, time1, time2)
                                     assign.add(assignment_tuple)
         return assign
             
