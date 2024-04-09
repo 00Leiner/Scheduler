@@ -13,7 +13,5 @@ class CSPAlgorithm:
         #print(self.domain_assignment)
         
     def define_algorithm(self):
-        numSolution = 2
         algo = backtrackingAlgorithm(self.domain_assignment)
-        result = algo.backtracking_search(numSolution)
-        print(result)
+        result = algo.backtracking_search()
