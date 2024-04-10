@@ -11,6 +11,7 @@ class backtrackingAlgorithm:
         return result
     
     def backtrack(self, schedule, domain, teacher_schedule, result):
+        
         if len(schedule) == len(self.program_course):
             result.append(schedule.copy())
             return 
@@ -55,7 +56,6 @@ class backtrackingAlgorithm:
             (program_id, course_code, course_type, instructor, room1, room2, day1, day2, time1, time2) = var
             if (program_id, course_code) not in schedule:
                     return var
-                
         return None
     
     def instructor_schedule(self, teacher_schedule, instructor, day1, day2, time1, time2, course_type):
