@@ -6,15 +6,13 @@ class backtrackingAlgorithm:
         self.program_course = set((program_id, course_code) for program_id, course_code, _, _, _, _, _, _, _, _, in self.domain_assignment)
         
     def backtracking_search(self):
-        result = {}
+        result = []
         self.backtrack({}, self.domain_assignment, {}, result)
         return result
     
     def backtrack(self, schedule, domain, teacher_schedule, result):
-        if len(result) == 2:
-            return
         if len(schedule) == len(self.program_course):
-            result.add(schedule.copy())
+            result.append(schedule.copy())
             return 
         
         var = self.select_unassigned_variable(schedule, domain)
