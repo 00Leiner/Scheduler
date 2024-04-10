@@ -8,7 +8,6 @@ class backtrackingAlgorithm:
     def backtracking_search(self):
         result = []
         self.backtrack({}, self.domain_assignment, {}, result)
-        print(result)
         return result
     
     def backtrack(self, schedule, domain, teacher_schedule, result):
@@ -45,9 +44,8 @@ class backtrackingAlgorithm:
                 'time': (time2, time2 + time_requirements_2)
             }
         }
-        
         # Perform forward checking
-        update_domain = forwardChecking(var, domain)
+        update_domain = forwardChecking(var, domain, teacher_schedule)
         
         #recursion
         self.backtrack(schedule, update_domain, teacher_schedule, result)
