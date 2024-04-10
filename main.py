@@ -18,11 +18,13 @@ class Scheduler:
         
     def CSP(self):
         csp = CSPAlgorithm(self.programs, self.courses, self.instructors, self.rooms)
-    
+        result = csp.define_result()
+        return result
+        
 app = Flask(__name__)
 class Fetching:
     def __init__(self):
-        self.url = 'http://192.168.1.6:3000/Schedule/create'
+        self.url = 'http://192.168.1.2:3000/Schedule/create'
 
     def perform_post_request(self, data):
         response = requests.post(self.url, json=data)
@@ -37,20 +39,20 @@ class Fetching:
 @app.route('/activate_csp_algorithm', methods=['POST'])
 def activate_csp_algorithm():
     try:
-
-        print(f'Number of solutions found!')
-        '''
+        scheduler = Scheduler()
+        result = scheduler.CSP()
+        
         fetching_instance = Fetching()
         for solution in result:
             response = fetching_instance.perform_post_request(solution)
             print(response.text)
-        '''
+  
         return jsonify({"status": "success", "message": "CSP algorithm activated successfully"})
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
   
 if __name__ == "__main__":
-    #from waitress import serve
-    #serve(app, host="0.0.0.0", port=8080)
-    scheduler = Scheduler()
-    scheduler.CSP()
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
+    #scheduler = Scheduler()
+    #scheduler.CSP()
