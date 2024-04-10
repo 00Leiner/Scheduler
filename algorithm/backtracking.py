@@ -80,31 +80,38 @@ class backtrackingAlgorithm:
             time_requirements_2 = 1
             
         # Check if the instructor has more than 5 different days scheduled
-        if len(teacher_schedule[instructor]) > 5:  # 4 because we are adding day1 and day2 below
-            print('instructor exceed 5 days a week')
-            print('instructor_id: ', instructor)
-            return False
+        if day1 not in teacher_schedule[instructor]:
+            if (len(teacher_schedule[instructor]) + 1) > 5:  # 4 because we are adding day1 and day2 below
+                print('instructor exceed 5 days a week')
+                print('instructor_id: ', instructor)
+                return False
+            
+        if day1 not in teacher_schedule[instructor]:
+            if (len(teacher_schedule[instructor]) + 1) > 5:  # 4 because we are adding day1 and day2 below
+                print('instructor exceed 5 days a week')
+                print('instructor_id: ', instructor)
+                return False
         
-        # Check if the total time slots for a day exceed 6
-        if len(teacher_schedule[instructor][day1]) + time_requirements_1 > 6:
-            print('instructor exceed 6 hours a day')
-            print('instructor_id: ', instructor, 'day: ', day1)
-            return False
-
-        if len(teacher_schedule[instructor][day2]) + time_requirements_2 > 6:
-            print('instructor exceed 6 hours a day')
-            print('instructor_id: ', instructor, 'day: ', day1)
-            return False
-
         # Check for time slot conflicts
         for ts in range(time1, time1 + time_requirements_1 + 1):
             if ts in teacher_schedule[instructor][day1]:
                 return False
+            else:
+                if len(teacher_schedule[instructor][day1]) + time_requirements_1 > 6:
+                    print('instructor exceed 6 hours a day')
+                    print('instructor_id: ', instructor, 'day: ', day1)
+                    return False
         
         for ts in range(time2, time2 + time_requirements_2 + 1):
             if ts in teacher_schedule[instructor][day2]:
                 return False
-          
+            else:
+                if len(teacher_schedule[instructor][day2]) + time_requirements_2 > 6:
+                    print('instructor exceed 6 hours a day')
+                    print('instructor_id: ', instructor, 'day: ', day1)
+                    return False
+                
         teacher_schedule[instructor][day1].extend(range(time1, time1 + time_requirements_1))
         teacher_schedule[instructor][day2].extend(range(time2, time2 + time_requirements_2))
         return True
+    
