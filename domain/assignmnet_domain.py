@@ -22,11 +22,11 @@ class assignmnetDomain:
                             day2 = self.second_day_schedule(day1)
                             print(course_type)
                             if course_type == 'Laboratory':
-                                print('laboratory')
+                                print('Laboratory')
                                 first_time_schedule = 3
                                 second_time_schedule = 2
                             else:
-                                print('lecture')
+                                print('Lecture')
                                 first_time_schedule = 2
                                 second_time_schedule = 1
                             
