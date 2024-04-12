@@ -11,43 +11,42 @@ class backtrackingAlgorithm:
         return result
     
     def backtrack(self, schedule, domain, teacher_schedule, result):
+        if len(result) == 4:
+            return
         
         if len(schedule) == len(self.program_course):
             result.append(schedule.copy())
             return 
         
-        var = self.select_unassigned_variable(schedule, domain)
+        for var in domain:
+            (program_id, course_code, course_type, instructor, room1, room2, day1, day2, time1, time2) = var
+            if (program_id, course_code) not in schedule:
         
-        if var is None:
-            return  # backtrack
-        
-        (program_id, course_code, course_type, instructor, room1, room2, day1, day2, time1, time2) = var
-        
-        if course_type == 'Laboratory':
-            time_requirements_1 = 3
-            time_requirements_2 = 2
-        else:
-            time_requirements_1 = 2
-            time_requirements_2 = 1
-        
-        schedule[(program_id, course_code)] = {
-            'instructor': instructor,
-            'schedule_1':{
-                'room': room1,
-                'day': day1,
-                'time': (time1, time1 + time_requirements_1)
-            },
-            'schedule_2':{
-                'room': room2,
-                'day': day2,
-                'time': (time2, time2 + time_requirements_2)
-            }
-        }
-        # Perform forward checking
-        update_domain = forwardChecking(var, domain, teacher_schedule)
-        
-        #recursion
-        self.backtrack(schedule, update_domain, teacher_schedule, result)
+                if course_type == 'Laboratory':
+                    time_requirements_1 = 3
+                    time_requirements_2 = 2
+                else:
+                    time_requirements_1 = 2
+                    time_requirements_2 = 1
+                
+                schedule[(program_id, course_code)] = {
+                    'instructor': instructor,
+                    'schedule_1':{
+                        'room': room1,
+                        'day': day1,
+                        'time': (time1, time1 + time_requirements_1)
+                    },
+                    'schedule_2':{
+                        'room': room2,
+                        'day': day2,
+                        'time': (time2, time2 + time_requirements_2)
+                    }
+                }
+                # Perform forward checking
+                update_domain = forwardChecking(var, domain, teacher_schedule)
+                
+                #recursion
+                self.backtrack(schedule, update_domain, teacher_schedule, result)
         
         del schedule[(program_id, course_code)]
         

@@ -20,13 +20,11 @@ class assignmnetDomain:
                     for room2 in self.room_by_type['Lecture']:
                         for day1 in range(1, 7):
                             day2 = self.second_day_schedule(day1)
-                            print(course_type)
+                            
                             if course_type == 'Laboratory':
-                                print('Laboratory')
                                 first_time_schedule = 3
                                 second_time_schedule = 2
                             else:
-                                print('Lecture')
                                 first_time_schedule = 2
                                 second_time_schedule = 1
                             
