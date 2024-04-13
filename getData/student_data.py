@@ -25,6 +25,7 @@ def format_data(fetched_data):
             'program': student.get('program', ''),
             'year': student.get('year', ''),
             'semester': student.get('semester', ''),
+            'major': student.get('major', ''),
             'block': student.get('block', ''),
             'courses': []
         }
