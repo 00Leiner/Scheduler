@@ -20,6 +20,7 @@ def formatting_data(result, students_details, courses_details, teachers_details,
                     "program": students_details[program_id]["program"],
                     "year": students_details[program_id]["year"],
                     "semester": students_details[program_id]["semester"],
+                    "major": students_details[program_id]["major"],
                     "block": students_details[program_id]["block"],
                     "sched": []
                 }
