@@ -20,7 +20,7 @@ class CSPAlgorithm:
     def define_algorithm(self):
         algo = backtrackingAlgorithm(self.domain_assignment)
         self.result = algo.backtracking_search()
-        #print(result)
+        #print(self.result)
     
     def define_result(self):
         student_details = {student['_id']: student for student in self.programs}

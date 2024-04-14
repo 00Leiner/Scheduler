@@ -18,9 +18,9 @@ def formatting_data(result, students_details, courses_details, teachers_details,
             if program_id not in check_same_student:
                 check_same_student[program_id] = {
                     "program": students_details[program_id]["program"],
+                    "major": students_details[program_id]["major"],
                     "year": students_details[program_id]["year"],
                     "semester": students_details[program_id]["semester"],
-                    "major": students_details[program_id]["major"],
                     "block": students_details[program_id]["block"],
                     "sched": []
                 }

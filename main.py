@@ -24,7 +24,7 @@ class Scheduler:
 app = Flask(__name__)
 class Fetching:
     def __init__(self):
-        self.url = 'http://192.168.1.2:3000/Schedule/create'
+        self.url = 'http://192.168.176.1:3000/Schedule/create'
 
     def perform_post_request(self, data):
         response = requests.post(self.url, json=data)
@@ -52,8 +52,8 @@ def activate_csp_algorithm():
         return jsonify({"status": "error", "message": str(e)})
   
 if __name__ == "__main__":
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=8080)
-    #scheduler = Scheduler()
-    #p = scheduler.CSP()
-    #print(p)
+    #from waitress import serve
+    #serve(app, host="0.0.0.0", port=8080)
+    scheduler = Scheduler()
+    p = scheduler.CSP()
+    print(p)
